@@ -1,0 +1,135 @@
+
+
+<!--banner-->
+<div class="banner-top">
+	<div class="container">
+		<h3 >Produit</h3>
+		<h4><a href="index.html">Accueil</a><label>/</label>Produit</h4>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+		<div class="single">
+			<div class="container">
+						<div class="single-top-main">
+	   		<div class="col-md-5 single-top">
+	   		<div class="single-w3agile">
+							
+<div id="picture-frame">
+			<img src="{{ product.image }}"  alt="" class="img-responsive"/>
+		</div>
+		<!-- <script src="js/jquery.zoomtoo.js"></script>
+		<script>
+			$(function() {
+				$("#picture-frame").zoomToo({
+					magnify: 1
+				});
+			});
+		</script> -->
+		
+		
+		
+			</div>
+			</div>
+			<div class="col-md-7 single-top-left ">
+								<div class="single-right">
+				<h3>{{ product.name }}</h3>
+				
+					
+				 <div class="pr-single">
+				  <p class="reduced "><del>{{ product.price }} F</del>{{ product.price - 500 }} F</p>
+				</div>
+				<div class="block block-w3">
+					<div class="starbox small ghosting"> </div>
+				</div>
+				<p class="in-pa"> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
+			   	
+				<ul class="social-top">
+					<li><a href="#" class="icon facebook"><i class="fa fa-facebook" aria-hidden="true"></i><span></span></a></li>
+					<li><a href="#" class="icon twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span></span></a></li>
+					<li><a href="#" class="icon pinterest"><i class="fa fa-pinterest-p" aria-hidden="true"></i><span></span></a></li>
+					<li><a href="#" class="icon dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i><span></span></a></li>
+				</ul>
+					<div class="add add-3">
+						<button ng-click="ProductManager.setProduct( {{ product.id }}, '{{ product.name }}', '{{ product.summary }}', {{ product.price }}, 1, '{{ product.image }}' )" class="btn btn-danger my-cart-btn my-cart-b" data-id="{{ member.id }}" data-name="{{ member.name }} (Kg)" data-summary="summary 1" data-price="2500" data-quantity="1" data-image="images/of16.png">Acheter</button>
+					</div>
+				
+				 
+			   
+			<div class="clearfix"> </div>
+			</div>
+		 
+
+			</div>
+		   <div class="clearfix"> </div>
+	   </div>	
+				 
+				
+	</div>
+</div>
+
+<div class="content-top offer-w3agile">
+	<div class="container ">
+			<div class="spec ">
+				<h3>Voir Aussi</h3>
+				<div class="ser-t">
+					<b></b>
+					<span><i></i></span>
+					<b class="line"></b>
+				</div>
+			</div>
+			
+			<div class="con-w3l wthree-of" ng-repeat="member in produit">
+			
+				<div class="col-md-4 pro-1" ng-if="member.id != product.id">
+					<div class="col-m">
+						<!-- <a href="#product" data-toggle="modal" data-target="#myModal17" class="offer-img"> -->
+						<a href="#product/{{ member.id }}"  class="offer-img">
+							<img src="{{ member.image }}" class="img-responsive" alt="">
+						</a>
+						<div class="mid-1">
+							<div class="women">
+								<h6><a href="#product/{{ member.id }}">{{ member.name }} </a>(Kg)</h6>							
+							</div>
+							<div class="mid-2">
+								<p ><label>{{ member.price }} F</label><em class="item_price">{{ member.price - 500 }} F</em></p>
+								  <div class="block">
+									<div class="starbox small ghosting"> </div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+								<div class="add add-2">
+							   <button ng-click="ProductManager.setProduct( {{ member.id }}, '{{ member.name }}', '{{ member.summary }}', {{ member.price }}, 1, '{{ member.image }}' )" class="btn btn-danger my-cart-btn my-cart-b" data-id="{{ member.id }}" data-name="{{ member.name }} (Kg)" data-summary="summary 1" data-price="2500" data-quantity="1" data-image="images/of16.png">Acheter</button>
+							</div>
+						</div>
+					</div>
+				</div>
+						
+			</div>
+	</div>
+</div>
+
+<!--- start-rate---->
+
+	<script type="text/javascript">
+		
+		jQuery('.starbox').each(function() {
+			var starbox = jQuery(this);
+				starbox.starbox({
+				average: starbox.attr('data-start-value'),
+				changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,
+				ghosting: starbox.hasClass('ghosting'),
+				autoUpdateAverage: starbox.hasClass('autoupdate'),
+				buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,
+				stars: starbox.attr('data-star-count') || 5
+				}).bind('starbox-value-changed', function(event, value) {
+				if(starbox.hasClass('random')) {
+				var val = Math.random();
+				starbox.next().text(' '+val);
+				return val;
+				} 
+			})
+		});
+	
+	</script>
+	
+<!---//End-rate---->

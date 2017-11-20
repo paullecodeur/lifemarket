@@ -1,0 +1,124 @@
+ <!--banner-->
+<div class="banner-top">
+	<div class="container">
+		<h3 >Mes achats</h3>
+		<h4><a href="#">Accueil</a><label>/</label>mes achats</h4>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+
+<!-- contact -->
+<div class="check-out">	 
+	<div class="container">	 
+		<div class="spec ">
+			<h3>Mes achats</h3>
+			<div class="ser-t">
+				<b></b>
+				<span><i></i></span>
+				<b class="line"></b>
+			</div>
+		</div>
+		
+
+	   <table class="table " >
+		  <thead> 
+			  <tr>
+				<th class="t-head head-it ">Produits</th>
+				<th class="t-head">Prix</th>
+				<th class="t-head">Quantité</th>
+
+				<th class="t-head">Prix Total</th>
+			  </tr>
+		  </thead>
+		  <tbody ng-repeat="member in setting.panier">
+		  
+			  <tr class="cross">
+				<td class="ring-in t-data">
+					<a href="#product/{{ member.id }}" class="at-in">
+						<img src="{{ member.image }}" class="" style="width:100%; max-width:100px" alt="">
+					</a>
+				<div class="sed">
+					<h5>{{ member.name }}</h5>
+				</div>
+					<div class="clearfix"> </div>
+					<div class="close1" ng-click="delete(member.id)"> <i class="fa fa-times" aria-hidden="true"></i></div>
+				 </td>
+				<td class="t-data">{{ member.price }} F</td>
+				<td class="t-data">
+					<div class="quantity"> 
+						<div class="quantity-select">            
+							<div class="entry value-minus" ng-click="valueMinus(member.id, member.quantity)">&nbsp;</div>
+								<div class="entry value"><span class="span-1">{{ member.quantity }}</span></div>									
+							<div class="entry value-plus active" ng-click="valuePlus(member.id, member.quantity)">&nbsp;</div>
+						</div>
+					</div>
+
+				</td>
+
+				<td class="t-data t-w3l">{{ member.quantity *  member.price}} F </td>
+				
+			  </tr>
+			  <!-- <tr class="cross1">
+			  <td class="t-data ring-in"><a href="single.html" class="at-in"><img src="images/wi1.png" class="img-responsive" alt=""></a>
+				<div class="sed">
+					<h5>Sed ut perspiciatis unde</h5>
+				</div>
+				<div class="clearfix"> </div>
+								<div class="close2"> <i class="fa fa-times" aria-hidden="true"></i></div>
+			  </td>
+			  <td class="t-data">$20.00</td>
+			  <td class="t-data">
+				<div class="quantity"> 
+					<div class="quantity-select">            
+						<div class="entry value-minus">&nbsp;</div>
+							<div class="entry value"><span class="span-1">1</span></div>									
+						<div class="entry value-plus active">&nbsp;</div>
+					</div>
+				</div>
+				
+			  </td>
+
+			  <td class="t-data t-w3l"><a class=" add-1" href="single.html">Add To Cart</a></td>
+				
+			  </tr>
+			  <tr class="cross2">
+				<td class="t-data ring-in"><a href="single.html" class="at-in"><img src="images/wi2.png" class="img-responsive" alt=""></a>
+				<div class="sed">
+					<h5>Sed ut perspiciatis unde</h5>
+				</div>
+				<div class="clearfix"> </div>
+					<div class="close3"> <i class="fa fa-times" aria-hidden="true"></i></div>
+				</td>
+				<td class="t-data">$15.00</td>
+				<td class="t-data"><div class="quantity"> 
+									<div class="quantity-select">            
+										<div class="entry value-minus">&nbsp;</div>
+											<div class="entry value"><span class="span-1">1</span></div>									
+										<div class="entry value-plus active">&nbsp;</div>
+									</div>
+								</div>
+				
+				</td>
+
+				<td class="t-data"><a class=" add-1" href="single.html">Add To Cart</a></td>
+				
+			  </tr> -->
+		  </tbody>
+		  <tfoot> <!-- Pied de tableau -->
+			 <tr class="cross" style="background: #FAB005;">
+				<td class="ring-in t-data" colspan="3">
+					
+					<div class="sed">
+						<h1>TOTAL</h1>
+					</div>
+				</td>
+				<td class="t-data"><h4>{{ setting.prixTotal }} F</h4></td>
+				
+			  </tr>   
+		  </tfoot>
+		</table>
+        <a href="#home" class="btn btn-info" >Continuer mes achats</a>
+		<a href="" class="btn btn-success" >Commander</a>
+	</div>
+</div>
+		 				
