@@ -1981,15 +1981,16 @@ a.at-in{
 }
 .value  {
     cursor: default;
-    width: 40px;
+    width: 87px;
 	height:40px;
     padding: 8px 0px;
+	margin-bottom:5px;
     color: #A9A9A9;
     line-height: 24px;
     border: 1px solid #E5E5E5;
     background-color: #E5E5E5;
     text-align: center;
-    display: inline-block;
+    /* display: inline-block; */
 	margin-right: 3px;
 }
 .quantity-select .entry.value-minus:hover,
@@ -2635,7 +2636,7 @@ a.at-in {
     margin-top: 2em;
 }
 .value {
-    width: 32px;
+    width: 70px;
     height: 32px;
     line-height: 16px;
 }
