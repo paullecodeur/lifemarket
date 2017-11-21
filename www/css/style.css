@@ -376,6 +376,20 @@ nav.navbar.navbar-default {
     width: 9%;
 }
 
+.btncart {
+	
+	color: #FFFFFF;
+	text-align: center;
+	padding: 10px 0;
+	border: none;
+	font-size: 1em;
+	outline: none;
+	width: 45%;
+	cursor: pointer;
+	margin-bottom: 30px;
+	border-radius: 0px;
+	
+}
 
 
 
@@ -2644,6 +2658,9 @@ a.at-in {
     height: 32px;
     width: 32px;
 }
+
+
+
 .login {
     padding: 3em 0;
 }
