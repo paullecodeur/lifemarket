@@ -15,7 +15,7 @@ var AngularApp = angular.module('AngularApp', []);
 	
   AngularApp.run(function($rootScope) {
 	  
-		$rootScope.setting = {'title': '', 'menu': 'home', 'totalQuantity': 0, 'prixTotal': 0};
+		$rootScope.setting = {'title': '', 'menu': 'home', 'totalQuantity': 0, 'prixTotal': 0, 'refresh':0};
 		$rootScope.produit = [
 		  {id: 1, name: 'Blanc de poulet', summary: 'Blanc de poulet', price: 3000, quantity: 1, image: 'images/of16.png'},
 		  {id: 2, name: 'Ailes de poulet', summary: 'Ailes de poulet', price: 2000, quantity: 1, image: 'images/of17.png'},
@@ -43,6 +43,33 @@ var AngularApp = angular.module('AngularApp', []);
 			
 			  return products[productIndex];
 		}
+		
+		$rootScope.voirPlus = function() {
+			$rootScope.setting.refresh = 1;
+			//setTimeout(function() {
+				/* value = {id: 400, name: 'Blanc de poulet', summary: 'Blanc de poulet', price: 3000, quantity: 1, image: 'images/of16.png'}
+				value = {id: 400, name: 'Blanc de poulet', summary: 'Blanc de poulet', price: 3000, quantity: 1, image: 'images/of16.png'} */
+				var products = $rootScope.produit;
+				var taille = $rootScope.produit.length;
+				for (var i = 0; i < taille; i++) {
+					
+					value = {id: $rootScope.produit[i].id, name: $rootScope.produit[i].name, summary: $rootScope.produit[i].summary, price: $rootScope.produit[i].price, quantity: 1, image: $rootScope.produit[i].image};
+
+					products.push(value);
+				} 
+				
+				$rootScope.produit = products;
+				 /*var products = $rootScope.produit;
+				  $.each(products, function(index, value){
+					  
+					$rootScope.produit.push(value);
+					
+				  });
+				 */  
+			//}, 5000);
+			
+			$rootScope.setting.refresh = 0;
+		}
 			
 		$rootScope.ProductManager = (function(){
 			var objToReturn = {};
@@ -67,7 +94,16 @@ var AngularApp = angular.module('AngularApp', []);
 			}
 			var addProduct = function(id, name, summary, price, quantity, image) {
 			  var products = getAllProducts();
-			  products.push({
+			 /*  products.push({
+				id: id,
+				name: name,
+				summary: summary,
+				price: price,
+				quantity: quantity,
+				image: image
+			  }); */
+			  //ajouter au debut du tableau
+			   products.unshift({
 				id: id,
 				name: name,
 				summary: summary,
@@ -75,6 +111,7 @@ var AngularApp = angular.module('AngularApp', []);
 				quantity: quantity,
 				image: image
 			  });
+			  
 			  setAllProducts(products);
 			}
 
@@ -161,25 +198,7 @@ var AngularApp = angular.module('AngularApp', []);
 			  
 			  toastr.success('ajouté au panier .', name, {timeOut: 3000});
 			  
-			  //alert('Ajouté au panier');
-			 /*  new PNotify({
-					title: 'Ajouté au panier',
-					text: '',
-					type:'success',
-					hide: true,
-					icon: false,
-					nonblock: {
-						nonblock: false
-					},
-					 buttons: {
-						closer_hover: false
-					},
-					animate: {
-						animate: true,
-						in_class: 'zoomInLeft',
-						out_class: 'zoomOutRight'
-					},
-			  }); */
+			  
 				
 			  //simmulatio du click sur l'icone du panier 
 			  //$('#my-cart-icon').click();
