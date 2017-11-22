@@ -1,10 +1,12 @@
 
 
+
+
 <!--banner-->
 <div class="banner-top">
 	<div class="container">
 		<h3 >Produit</h3>
-		<h4><a href="index.html">Accueil</a><label>/</label>Produit</h4>
+		<h4><a href="#home">Accueil</a><label>/</label>Produit</h4>
 		<div class="clearfix"> </div>
 	</div>
 </div>
@@ -50,7 +52,7 @@
 					<li><a href="#" class="icon dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i><span></span></a></li>
 				</ul>
 					<div class="add add-3">
-						<button ng-click="ProductManager.setProduct( {{ product.id }}, '{{ product.name }}', '{{ product.summary }}', {{ product.price }}, 1, '{{ product.image }}' )" class="btn btn-danger my-cart-btn my-cart-b" data-id="{{ member.id }}" data-name="{{ member.name }} (Kg)" data-summary="summary 1" data-price="2500" data-quantity="1" data-image="images/of16.png">Acheter</button>
+						<button ng-click="ProductManager.setProduct( product.id , product.name , product.summary, product.price, 1, product.image )" class="btn btn-danger my-cart-btn my-cart-b" >Acheter</button>
 					</div>
 				
 				 
@@ -98,7 +100,7 @@
 								<div class="clearfix"></div>
 							</div>
 								<div class="add add-2">
-							   <button ng-click="ProductManager.setProduct( {{ member.id }}, '{{ member.name }}', '{{ member.summary }}', {{ member.price }}, 1, '{{ member.image }}' )" class="btn btn-danger my-cart-btn my-cart-b" data-id="{{ member.id }}" data-name="{{ member.name }} (Kg)" data-summary="summary 1" data-price="2500" data-quantity="1" data-image="images/of16.png">Acheter</button>
+							   <button ng-click="ProductManager.setProduct( member.id, member.name, member.summary, member.price, 1, member.image )" class="btn btn-danger my-cart-btn my-cart-b" >Acheter</button>
 							</div>
 						</div>
 					</div>

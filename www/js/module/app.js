@@ -1,19 +1,21 @@
-var AngularApp = angular.module('AngularApp', []);
-		
-	AngularApp.config(function($routeProvider){
-		$routeProvider
-			.when('/', {templateUrl: 'view/home.html', controller: homeCtrl})
-			.when('/about', {templateUrl: 'view/about.html', controller: aboutCtrl})
-			.when('/contact', {templateUrl: 'view/contact.html', controller: contactCtrl})
-			.when('/login', {templateUrl: 'view/login.html', controller: loginCtrl})
-			.when('/singup', {templateUrl: 'view/singup.html', controller: singupCtrl})
-			.when('/cart', {templateUrl: 'view/cart.html', controller: cartCtrl})
-			.when('/product/:productId', {templateUrl: 'view/product.html', controller: productCtrl})
-			.otherwise({redirectTo: '/'})
-			
-	});
+(function(){                                                                     
 	
-  AngularApp.run(function($rootScope) {
+	var AppLifemarket = angular.module('lifemarketApp', ['lifemarketController', 'ngRoute','ngAnimate']);                                     
+	
+	AppLifemarket.config(["$routeProvider", function($routeProvider){
+		$routeProvider
+			.when('/', {templateUrl: 'view/home.html', controller: 'homeCtrl'})
+			.when('/about', {templateUrl: 'view/about.html', controller: 'aboutCtrl'})
+			.when('/contact', {templateUrl: 'view/contact.html', controller: 'contactCtrl'})
+			.when('/login', {templateUrl: 'view/login.html', controller: 'loginCtrl'})
+			.when('/singup', {templateUrl: 'view/singup.html', controller: 'singupCtrl'})
+			.when('/cart', {templateUrl: 'view/cart.html', controller: 'cartCtrl'})
+			.when('/product/:productId', {templateUrl: 'view/product.html', controller: 'productCtrl'})
+			.otherwise({redirectTo: '/'});
+			
+	}]);
+	
+  AppLifemarket.run(function($rootScope, $timeout) {
 	  
 		$rootScope.setting = {'title': '', 'menu': 'home', 'totalQuantity': 0, 'prixTotal': 0, 'refresh':0};
 		$rootScope.produit = [
@@ -21,9 +23,15 @@ var AngularApp = angular.module('AngularApp', []);
 		  {id: 2, name: 'Ailes de poulet', summary: 'Ailes de poulet', price: 2000, quantity: 1, image: 'images/of17.png'},
 		  {id: 3, name: 'Cuisse de poulet', summary: 'Cuisse de poulet', price: 3500, quantity: 1, image: 'images/of18.png'},
 		  {id: 4, name: 'Poulet vide STSP', summary: 'Blanc de poulet', price: 4000, quantity: 1, image: 'images/of19.png'},
-		  {id: 5, name: 'Poulet entier', summary: 'Poulet entier', price: 5000, quantity: 1, image: 'images/of20.png'},
+		  {id: 5, name: 'Poulet entier avec tête/cou/pattes', summary: 'Poulet entier', price: 5000, quantity: 1, image: 'images/of20.png'},
 		  {id: 6, name: 'Fricassé de poulet', summary: 'Fricassé de poulet', price: 1500, quantity: 1, image: 'images/of21.png'},
 		]
+
+		//detection du changement de route
+		$rootScope.$on("$routeChangeSuccess", function (scope, next, current) {
+			$rootScope.transitionState = "active"
+			//alert('ok');
+		});
 	
 		$rootScope.getProduct = function(id) {
 			  
@@ -46,19 +54,21 @@ var AngularApp = angular.module('AngularApp', []);
 		
 		$rootScope.voirPlus = function() {
 			$rootScope.setting.refresh = 1;
-			//setTimeout(function() {
-				/* value = {id: 400, name: 'Blanc de poulet', summary: 'Blanc de poulet', price: 3000, quantity: 1, image: 'images/of16.png'}
-				value = {id: 400, name: 'Blanc de poulet', summary: 'Blanc de poulet', price: 3000, quantity: 1, image: 'images/of16.png'} */
-				var products = $rootScope.produit;
-				var taille = $rootScope.produit.length;
-				for (var i = 0; i < taille; i++) {
-					
-					value = {id: $rootScope.produit[i].id, name: $rootScope.produit[i].name, summary: $rootScope.produit[i].summary, price: $rootScope.produit[i].price, quantity: 1, image: $rootScope.produit[i].image};
-
-					products.push(value);
-				} 
 				
-				$rootScope.produit = products;
+				var delayedFn = $timeout(function(){ 
+					
+					var products = $rootScope.produit;
+					var taille = $rootScope.produit.length;
+					for (var i = 0; i < taille; i++) {
+						
+						value = {id: $rootScope.produit[i].id, name: $rootScope.produit[i].name, summary: $rootScope.produit[i].summary, price: $rootScope.produit[i].price, quantity: 1, image: $rootScope.produit[i].image};
+	
+						products.push(value);
+					} 
+					
+					$rootScope.produit = products;
+
+					
 				 /*var products = $rootScope.produit;
 				  $.each(products, function(index, value){
 					  
@@ -66,9 +76,13 @@ var AngularApp = angular.module('AngularApp', []);
 					
 				  });
 				 */  
-			//}, 5000);
+
+					$rootScope.setting.refresh = 0;
+
+
+				 }, 5000);
+				
 			
-			$rootScope.setting.refresh = 0;
 		}
 			
 		$rootScope.ProductManager = (function(){
@@ -243,6 +257,7 @@ var AngularApp = angular.module('AngularApp', []);
 			return objToReturn;
 		}());
 		
+		
 	
 		$rootScope.delete = function(id)
 		{
@@ -284,4 +299,8 @@ var AngularApp = angular.module('AngularApp', []);
 		$rootScope.initSetting();
 
 		
-  });
+	});
+	
+})(); 
+
+

@@ -1,3 +1,4 @@
+
 <!-- Carousel
 ================================================== -->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -45,7 +46,7 @@
 					</a>
 					<div class="mid-1">
 						<div class="women">
-							<h6><a href="#product/{{ member.id }}">{{ member.name }} </a>(Kg)</h6>							
+							<h6><a href="#product/{{ member.id }}">{{ member.name|limitTo: 35 }}{{member.name.length > 35 ? '...' : ''}}</a> (Kg)</h6>							
 						</div>
 						<div class="mid-2">
 							<p ><label>{{ member.price }} F</label><em class="item_price">{{ member.price - 500 }} F</em></p>
@@ -55,7 +56,7 @@
 							<div class="clearfix"></div>
 						</div>
 							<div class="add add-2">
-						   <button ng-click="ProductManager.setProduct( {{ member.id }}, '{{ member.name }}', '{{ member.summary }}', {{ member.price }}, 1, '{{ member.image }}' )" class="btn btn-danger my-cart-btn my-cart-b" data-id="{{ member.id }}" data-name="{{ member.name }} (Kg)" data-summary="summary 1" data-price="2500" data-quantity="1" data-image="images/of16.png">Acheter</button>
+						   <button ng-click="ProductManager.setProduct( member.id ,  member.name, member.summary, member.price, 1, member.image )" class="btn btn-danger my-cart-btn my-cart-b" data-id="{{ member.id }}" data-name="{{ member.name }} (Kg)" data-summary="summary 1" data-price="2500" data-quantity="1" data-image="images/of16.png">Acheter</button>
 						</div>
 					</div>
 				</div>
@@ -66,7 +67,7 @@
 		
 	</div>
 	<div class="container">
-		<div class="spec col-md-12" style="margin-top:50px">
+		<div class="spec col-md-12" style="margin-top:20px">
 			<h3>
 			<button ng-click="voirPlus()" ng-hide="setting.refresh" class="btn btn-danger my-cart-btn my-cart-b" >Afficher plus de résultats</button><br/>
 			<span ng-show="setting.refresh"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>

@@ -1,8 +1,0 @@
-
-function menuCtrl($scope){
-
-	
-
-}
-
-	

@@ -8,7 +8,8 @@ body{
 	margin:0;
 	padding:0;
 	background:#fff;
-	font-family: 'Noto Sans', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
+    box-shadow: 1px solid black;
  }
 body a{
 	transition:0.5s all;
@@ -30,6 +31,32 @@ body a{
     text-align: center;
 }
 
+/* transition page */
+
+/* .slide{
+    position: absolute;
+    top: 400px;
+    width: 100%;
+    transition: 300ms;
+  }
+
+.side.ng-enter{
+    top: 100%;
+  }
+  
+  .slide.ng-enter.ng-enter-active{
+    top: 0%;
+  }
+  
+  .slide.ng-leave{
+    top: 0%;
+  }
+  
+  .slide.ng-leave.ng-leave-active{
+    top: -100%;
+  } */
+  
+  
 h1,h2,h3,h4,h5,h6{
 	margin:0;
 	font-family: 'Montserrat', sans-serif;	
@@ -682,6 +709,7 @@ ul.nav.tabs {
 .col-m {
     padding: 1em;
     border: 1px solid #B2B2B2;
+    min-height: 280px;
 }
 .offer-img{
 	position:relative;
