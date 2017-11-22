@@ -31,30 +31,33 @@ body a{
     text-align: center;
 }
 
+/* proriete class ngAnime */
+
+/* animation boucle repeat */
+
 /* transition page */
 
-/* .slide{
-    position: absolute;
-    top: 400px;
-    width: 100%;
-    transition: 300ms;
-  }
+.slide.ng-animate {
+    transition: all ease 0.4s;
+    /* position: absolute; */
+    z-index: 1000;
+    background: white;
+}
 
-.side.ng-enter{
-    top: 100%;
-  }
-  
-  .slide.ng-enter.ng-enter-active{
-    top: 0%;
-  }
-  
-  .slide.ng-leave{
-    top: 0%;
-  }
-  
-  .slide.ng-leave.ng-leave-active{
-    top: -100%;
-  } */
+.slide.ng-enter {
+    left: 200px;
+    opacity: 0;
+}
+
+.slide.ng-leave, .slide.ng-enter.ng-enter-active {
+    top: 0px;
+    opacity: 1;
+}
+
+.slide.ng-leave.ng-leave-active {
+    left: -200px;
+    opacity: 0;
+}
   
   
 h1,h2,h3,h4,h5,h6{
