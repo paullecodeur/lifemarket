@@ -10,12 +10,13 @@
 			.when('/login', {templateUrl: 'view/login.html', controller: 'loginCtrl'})
 			.when('/singup', {templateUrl: 'view/singup.html', controller: 'singupCtrl'})
 			.when('/cart', {templateUrl: 'view/cart.html', controller: 'cartCtrl'})
+			.when('/order', {templateUrl: 'view/order.html', controller: 'orderCtrl'})
 			.when('/product/:productId', {templateUrl: 'view/product.html', controller: 'productCtrl'})
 			.otherwise({redirectTo: '/'});
 			
 	}]);
 	
-  AppLifemarket.run(function($rootScope, $timeout) {
+  AppLifemarket.run(function($rootScope, $timeout, $location) {
 	  
 		$rootScope.setting = {'title': '', 'menu': 'home', 'totalQuantity': 0, 'prixTotal': 0, 'refresh':0};
 		$rootScope.produit = [
@@ -26,6 +27,8 @@
 		  {id: 5, name: 'Poulet entier avec tête/cou/pattes', summary: 'Poulet entier', price: 5000, quantity: 1, image: 'images/of20.png'},
 		  {id: 6, name: 'Fricassé de poulet', summary: 'Fricassé de poulet', price: 1500, quantity: 1, image: 'images/of21.png'},
 		]
+
+
 
 		//detection du changement de route
 		$rootScope.$on("$routeChangeSuccess", function (scope, next, current) {
@@ -196,18 +199,20 @@
 			  }
 			  
 			  //initialisation des paramètres
-			  $rootScope.initSetting();
+			  $rootScope.initCartSetting();
 
 			  
 			  //$('#my-cart-badge').text(getTotalQuantity());
 			  toastr.options = {
-				'closeButton' : true,
-				'progressBar' : true,
-				'onclick' : function() { 
-				//on affiche la panier
-				location.href='#cart';
-			  
-				},
+					//'closeButton' : true,
+					//'progressBar' : true,
+					'onclick' : function() { 
+					//on affiche la panier
+					//$location.path("/cart");
+
+					location.href = '#cart';
+					
+					},
 			  }
 			  
 			  toastr.success('ajouté au panier .', name, {timeOut: 3000});
@@ -262,7 +267,7 @@
 		$rootScope.delete = function(id)
 		{
 			$rootScope.ProductManager.removeProduct(id);
-			$rootScope.initSetting();
+			$rootScope.initCartSetting();
 			//alert('delete ' + id);
 		}
 		
@@ -270,7 +275,7 @@
 		{
 			quantity = eval(quantity + 1);
 			$rootScope.ProductManager.updatePoduct(id, quantity);
-			$rootScope.initSetting();
+			$rootScope.initCartSetting();
 			//alert('delete ' + id + ' ' + quantity);
 		}
 		
@@ -280,23 +285,29 @@
 			{
 				quantity = eval(quantity - 1);
 				$rootScope.ProductManager.updatePoduct(id, quantity);
-				$rootScope.initSetting();
+				$rootScope.initCartSetting();
 			
 			}
 			//alert('delete ' + id + ' ' + quantity);
 		}
 		
 		
-		$rootScope.initSetting = function()
+		$rootScope.initCartSetting = function()
 		{
 			
 			$rootScope.setting.panier = $rootScope.ProductManager.getAllProducts();
 			$rootScope.setting.totalQuantity = $rootScope.ProductManager.getTotalQuantity();
 			$rootScope.setting.prixTotal = $rootScope.ProductManager.getTotalPrice();
+
+			if($rootScope.setting.panier.length > 0 )
+				$rootScope.cartIsEmpty = false;
+			else
+				$rootScope.cartIsEmpty = true;
 			
 		}
 		
-		$rootScope.initSetting();
+		// on exécute la function au démarrage
+		$rootScope.initCartSetting();
 
 		
 	});

@@ -19,17 +19,18 @@ body a{
 	-ms-transition:0.5s all;
 }
 
-.body-loader {
+.body-loader, .flashscreen {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 10000;
-    background: url(../images/bg4.png) repeat;
-    background: #fff;
+    /* background: url(../images/bg4.png) repeat; */
     text-align: center;
 }
+
+
 
 /* proriete class ngAnime */
 
@@ -39,7 +40,7 @@ body a{
 
 .slide.ng-animate {
     transition: all ease 0.4s;
-    /* position: absolute; */
+   /*  position: absolute;  */
     z-index: 1000;
     background: white;
 }
@@ -58,7 +59,33 @@ body a{
     left: -200px;
     opacity: 0;
 }
-  
+
+/* .slide.ng-animate {    
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.slide.ng-enter, .slide.ng-leave {
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+.slide.ng-enter {
+    left: 100%;
+    opacity: 0;
+}
+.slide.ng-enter-active {
+    left: 0;
+    opacity: 1;
+}
+.slide.ng-leave {
+    left: 0;
+    opacity: 1;
+}
+.slide.ng-leave-active {
+    left: -100%;
+    
+} */
   
 h1,h2,h3,h4,h5,h6{
 	margin:0;
@@ -1862,7 +1889,7 @@ a#myTabDrop1 {
     text-align: center;
     margin-bottom: 1.5em;
 }
-.form-w3agile input[type="submit"] {
+.form-w3agile input[type="submit"], .form-w3agile input[type="button"]{
     background: #fdb515;
     color: #FFFFFF;
     text-align: center;
@@ -1874,7 +1901,7 @@ a#myTabDrop1 {
     cursor: pointer;
     margin-bottom:30px;
 }
-.form-w3agile  input[type="submit"]:hover{
+.form-w3agile  input[type="submit"]:hover, .form-w3agile input[type="button"]:hover{
 	background:#029241;
 	transition:0.5s all;
 	-webkit-transition:0.5s all;
@@ -3130,7 +3157,7 @@ td.t-data {
     width: 30%;
 }
 a.at-in {
-    width: 75%;
+    /* width: 75%; */
 }
 .close1 i, .close2 i, .close3 i {
     width: 20px;

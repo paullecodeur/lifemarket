@@ -39,26 +39,42 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
 <body >
 
-	<div class="body-loader"> <center>
-	<div style="margin-top:50vh;  transform: translateY(-50%); ">
-	<!-- <img style="max-height:100px;" src="images/logo.png"> -->
-	<div>
-		</div>
-			<div class="logo">
-				<!-- <div style="color:#FAB005"><i class="fa fa-shopping-cart fa-3x"></i></div> -->
-				<h1 ><a href="" style="color:#FAB005">LIFE <i class="fa fa-shopping-cart"></i><span>&nbsp; &nbsp; Market &nbsp; &nbsp;</span></a></h1>
-				<div><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></div>
+	<div class="flashscreen" style="background:#fff"> 
+		<center>
+			<div style="margin-top:50vh;  transform: translateY(-50%); ">
+				<!-- <img style="max-height:100px;" src="images/logo.png"> -->
+				<div>
+				</div>
+				<div class="logo">
+					<!-- <div style="color:#FAB005"><i class="fa fa-shopping-cart fa-3x"></i></div> -->
+					<center><img src="images/logo.png" class="" alt="" style="width:200px;" ></center>
+					<div><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></div>
+				</div>
 			</div>
-		</div>
-	</center> </div> 
+		</center> 
+	</div>
+	
+	<div class="body-loader" style="visibility:hidden; background:rgba(0,0,0,0.5); color:#fff"> 
+		<center>
+			<div style="margin-top:50vh;  transform: translateY(-50%); ">
+				<!-- <img style="max-height:100px;" src="images/logo.png"> -->
+				<div>
+				</div>
+				<div class="logo">
+					<div><i class="fa fa-cog fa-spin fa-3x fa-fw"></i><br/> opération en cour...</div>
+				</div>
+			</div>
+		</center> 
+	</div>
 
-	<a href=""><img src="images/download.png" class="img-head" alt=""></a>
+	<a href="#home"><img src="images/download.png" class="img-head" alt=""></a>
 	<div class="header">
 
 		<div class="container" >
 			
 			<div class="logo">
-				<h1 ><a href="index.html"><b>T<br>H<br>E</b>LIFE<span>&nbsp; &nbsp; Market  &nbsp; &nbsp;</span></a></h1>
+				<!-- <h1 ><a href=""><b>T<br>H<br>E</b>LIFE<span>&nbsp; &nbsp; Market  &nbsp; &nbsp;</span></a></h1> -->
+				<center><a href="#home"><img src="images/logo.png" class="" alt="" style="width:100px;" ></a></center>
 			</div>
 			<div class="head-t">
 				<ul class="card">
@@ -720,10 +736,10 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<!-- <h2 ><a href="index.html"><b>T<br>H<br>E</b>LIFE<span>&nbsp; &nbsp; Market &nbsp; &nbsp;</span></a></h2>
 				<p class="fo-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p> -->
 				<ul class="social-fo">
-					<li><a href="#" class=" face"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-					<li><a href="#" class=" twi"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-					<li><a href="#" class=" pin"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-					<li><a href="#" class=" dri"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+					<li><a href="" class=" face"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a href="" class=" twi"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+					<li><a href="" class=" pin"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+					<li><a href="" class=" dri"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
 				</ul>
 				<div class=" address">
 					<div class="col-md-4 fo-grid1">
@@ -762,7 +778,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			$(".nav-backed-header").height(($('.site-header').height()));
 			new WOW().init();*/
 			setTimeout(function() {
-				$('.body-loader').hide(); 
+				$('.flashscreen').hide(); 
 			}, 3000);
 			
 		});

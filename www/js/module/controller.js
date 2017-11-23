@@ -29,7 +29,7 @@
 		$scope.setting.menu = 'cart';
 		
 		$scope.setting.panier = $scope.ProductManager.getAllProducts();
-		$scope.setting.prixTotal = $scope.ProductManager.getTotalPrice();	
+		$scope.setting.prixTotal = $scope.ProductManager.getTotalPrice();
 
 	});
 
@@ -48,6 +48,26 @@
 	ControllerLifemarket.controller('singupCtrl', function($scope){
 		
 		$scope.setting.menu = 'singup';
+
+	});
+
+	ControllerLifemarket.controller('orderCtrl', function($scope){
+		
+		$scope.setting.menu = 'order';
+
+		$scope.submitOrder = function()
+		{
+			$('.body-loader').css('visibility','visible'); 
+			setTimeout(function() {
+				$('.body-loader').css('visibility','hidden');
+				$scope.ProductManager.clearProduct();
+				$scope.initCartSetting();
+				location.href="#home";
+			}, 3000);
+			
+
+			
+		}
 
 	});
 

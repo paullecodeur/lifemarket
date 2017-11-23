@@ -69,8 +69,8 @@
 	<div class="container">
 		<div class="spec col-md-12" style="margin-top:20px">
 			<h3>
-			<button ng-click="voirPlus()" ng-hide="setting.refresh" class="btn btn-danger my-cart-btn my-cart-b" >Afficher plus de résultats</button><br/>
-			<span ng-show="setting.refresh"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+			<button ng-click="voirPlus()" ng-if="!setting.refresh" class="btn btn-danger my-cart-btn my-cart-b" >Afficher plus de résultats</button><br/>
+			<span ng-if="setting.refresh"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
 			</h3>
 			<!-- <div class="ser-t">
 				<b></b>

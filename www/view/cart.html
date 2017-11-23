@@ -20,93 +20,52 @@
 			</div>
 		</div>
 		
+	   <div class="alert col-md-offset-2 col-md-8 alert-danger" ng-if="cartIsEmpty">
+			<strong>Aucun achat effectué !</strong>
+	   </div>
 
-	   <table class="table " >
-		  <thead> 
-			  <tr>
-				<th class="t-head head-it ">Produits</th>
-				<th class="t-head">Prix</th>
-				<th class="t-head">Quantité</th>
-
-				<th class="t-head">Prix Total</th>
-			  </tr>
-		  </thead>
-		  <tbody ng-repeat="member in setting.panier">
-		  
-			  <tr class="cross">
-				<td class="ring-in t-data">
-					<a href="#product/{{ member.id }}" class="at-in">
-						<img src="{{ member.image }}" class="" style="width:100%; max-width:100px" alt="">
-					</a>
-				<div class="sed">
-					<h5>{{ member.name }}</h5>
-				</div>
-					<div class="clearfix"> </div>
-					<div class="close1" ng-click="delete(member.id)"> <i class="fa fa-times" aria-hidden="true"></i></div>
-				 </td>
-				<td class="t-data">{{ member.price }} F</td>
-				<td class="t-data">
-					<div class="quantity"> 
-						<div class="quantity-select">            
-							<div class="entry value"><span class="span-1">{{ member.quantity }}</span></div>									
-							<div class="entry value-minus" ng-click="valueMinus(member.id, member.quantity)">&nbsp;</div>
-							<div class="entry value-plus active" ng-click="valuePlus(member.id, member.quantity)">&nbsp;</div>
+	   <div ng-if="!cartIsEmpty">
+		<div ng-repeat="member in setting.panier">
+			<div class="row" style="border: 1px solid #DADADA; padding:10px; margin:10px 5px 10px 5px">
+				<div class="row">
+					<div class="col-xs-10">
+						<a href="#product/{{ member.id }}" class="at-in">
+							<img src="{{ member.image }}" class="" style="width:100%; max-width:100px" alt="">
+						</a>
+						<div class="sed">
+							<h5>{{ member.name }}</h5>
 						</div>
+						<div class="clearfix"> </div>
 					</div>
-
-				</td>
-
-				<td class="t-data t-w3l">{{ member.quantity *  member.price}} F </td>
-				
-			  </tr>
-			  <!-- <tr class="cross1">
-			  <td class="t-data ring-in"><a href="single.html" class="at-in"><img src="images/wi1.png" class="img-responsive" alt=""></a>
-				<div class="sed">
-					<h5>Sed ut perspiciatis unde</h5>
-				</div>
-				<div class="clearfix"> </div>
-								<div class="close2"> <i class="fa fa-times" aria-hidden="true"></i></div>
-			  </td>
-			  <td class="t-data">$20.00</td>
-			  <td class="t-data">
-				<div class="quantity"> 
-					<div class="quantity-select">            
-						<div class="entry value-minus">&nbsp;</div>
-							<div class="entry value"><span class="span-1">1</span></div>									
-						<div class="entry value-plus active">&nbsp;</div>
+					<div class="col-xs-2" > 
+						<a href="" ng-click="delete(member.id)">
+							<i class="fa fa-trash fa-2x pull-right" aria-hidden="true"></i>
+						</a>
 					</div>
 				</div>
-				
-			  </td>
 
-			  <td class="t-data t-w3l"><a class=" add-1" href="single.html">Add To Cart</a></td>
-				
-			  </tr>
-			  <tr class="cross2">
-				<td class="t-data ring-in"><a href="single.html" class="at-in"><img src="images/wi2.png" class="img-responsive" alt=""></a>
-				<div class="sed">
-					<h5>Sed ut perspiciatis unde</h5>
+				<div class="row" style="padding:10px">
+					<div class="col-xs-4"><h5>Prix Unitaire</h5>{{ member.price }} F</div>
+					<div class="col-xs-4" style="border-left: 1px solid #cccccc; border-right: 1px solid #cccccc;">
+						<div class=""> 
+							<h5>Quantité</h5>
+							<div class="quantity-select">            
+								<div class="entry value"><span class="span-1">{{ member.quantity }}</span></div>									
+								<div class="entry value-minus" ng-click="valueMinus(member.id, member.quantity)">&nbsp;</div>
+								<div class="entry value-plus active" ng-click="valuePlus(member.id, member.quantity)">&nbsp;</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-xs-4"><h5>Prix Total</h5> {{ member.quantity *  member.price}} F </div>
 				</div>
-				<div class="clearfix"> </div>
-					<div class="close3"> <i class="fa fa-times" aria-hidden="true"></i></div>
-				</td>
-				<td class="t-data">$15.00</td>
-				<td class="t-data"><div class="quantity"> 
-									<div class="quantity-select">            
-										<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value"><span class="span-1">1</span></div>									
-										<div class="entry value-plus active">&nbsp;</div>
-									</div>
-								</div>
-				
-				</td>
 
-				<td class="t-data"><a class=" add-1" href="single.html">Add To Cart</a></td>
-				
-			  </tr> -->
-		  </tbody>
-		  <tfoot> <!-- Pied de tableau -->
-			 <tr class="cross" style="background: #FAB005;">
+			</div>	
+		</div>
+
+		<table class="table"> <!-- Pied de tableau -->
+			<tr class="cross" style="background: #FAB005;">
 				<td class="ring-in t-data" colspan="3">
 					
 					<div class="sed">
@@ -115,11 +74,13 @@
 				</td>
 				<td class="t-data"><h4>{{ setting.prixTotal }} F</h4></td>
 				
-			  </tr>   
-		  </tfoot>
+			</tr>   
 		</table>
-        <a href="#home" class="btn btncart btn-info pull-left" >Continuer mes achats</a>
-		<a href="" class="btn btncart btn-success pull-right" >Commander</a>
+		<div>
+			<a href="#home" class="btn btncart btn-info pull-left" >Continuer mes achats</a>
+			<a href="#order" class="btn btncart btn-success pull-right" ng-if="setting.prixTotal">Commander</a>
+		</div>
+	</div>
 	</div>
 </div>
 		 				
