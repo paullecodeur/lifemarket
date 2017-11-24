@@ -47,8 +47,13 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				</div>
 				<div class="logo">
 					<!-- <div style="color:#FAB005"><i class="fa fa-shopping-cart fa-3x"></i></div> -->
-					<center><img src="images/logo.png" class="" alt="" style="width:200px;" ></center>
-					<div><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></div>
+					<div><img src="images/logo.png" class="" alt="" style="width:200px;" ></div><br/>
+					<!-- <div><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></div> -->
+					<div class="progress">
+						<div id="dynamic" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: %">
+							<span id="current-progress"></span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</center> 
@@ -74,7 +79,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			
 			<div class="logo">
 				<!-- <h1 ><a href=""><b>T<br>H<br>E</b>LIFE<span>&nbsp; &nbsp; Market  &nbsp; &nbsp;</span></a></h1> -->
-				<center><a href="#home"><img src="images/logo.png" class="" alt="" style="width:100px;" ></a></center>
+				<center><a href="#home"><img src="images/logo.png" class="" alt="" style="width:120px;" ></a></center>
 			</div>
 			<div class="head-t">
 				<ul class="card">
@@ -778,8 +783,18 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			$(".nav-backed-header").height(($('.site-header').height()));
 			new WOW().init();*/
 			setTimeout(function() {
-				$('.flashscreen').hide(); 
-			}, 3000);
+				var current_progress = 0;
+				var interval = setInterval(function() {
+					current_progress += 25;
+					$("#dynamic")
+					.css("width", current_progress + "%")
+					.attr("aria-valuenow", current_progress)
+					.text(current_progress + "% ");
+					if (current_progress >= 100)
+						clearInterval(interval);
+				}, 1000);
+				//$('.flashscreen').hide(); 
+			}, 5000);
 			
 		});
 	</script>

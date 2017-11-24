@@ -4,10 +4,11 @@
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="paulyemdji@gmail.com" href="http://cordova.io">
         Apache Cordova Team
     </author>
     <content src="index.html" />
+    <icon src="www/images/icon.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

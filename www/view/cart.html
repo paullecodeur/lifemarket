@@ -19,11 +19,19 @@
 				<b class="line"></b>
 			</div>
 		</div>
-		
-	   <div class="alert col-md-offset-2 col-md-8 alert-danger" ng-if="cartIsEmpty">
-			<strong>Aucun achat effectué !</strong>
-	   </div>
-
+		<center ng-if="cartIsEmpty">
+			<div class="alert col-md-offset-2 col-md-8 alert-danger" >
+				
+				<strong>Aucun achat effectué !</strong> 
+					
+			</div>
+			<div class="col-md-12">
+					<br/><i  class="fa fa-shopping-cart fa-5x"> </i> <br/><br/><br/>
+			</div>
+			<div class="col-md-offset-2 col-md-8">
+				<a href="#home" class="btn btncart btn-info " style="width: 100%;">Continuer mes achats</a>
+			</div>
+		</center>
 	   <div ng-if="!cartIsEmpty">
 		<div ng-repeat="member in setting.panier">
 			<div class="row" style="border: 1px solid #DADADA; padding:10px; margin:10px 5px 10px 5px">
@@ -44,7 +52,7 @@
 					</div>
 				</div>
 
-				<div class="row" style="padding:10px">
+				<div class="row" style="padding:20px 5px 10px 5px">
 					<div class="col-xs-4"><h5>Prix Unitaire</h5>{{ member.price }} F</div>
 					<div class="col-xs-4" style="border-left: 1px solid #cccccc; border-right: 1px solid #cccccc;">
 						<div class=""> 
