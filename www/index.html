@@ -782,19 +782,26 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			/*$(".autoheight").height(($(window).height()-50));
 			$(".nav-backed-header").height(($('.site-header').height()));
 			new WOW().init();*/
-			setTimeout(function() {
-				var current_progress = 0;
-				var interval = setInterval(function() {
-					current_progress += 25;
-					$("#dynamic")
-					.css("width", current_progress + "%")
-					.attr("aria-valuenow", current_progress)
-					.text(current_progress + "% ");
-					if (current_progress >= 100)
-						clearInterval(interval);
-				}, 1000);
-				//$('.flashscreen').hide(); 
-			}, 5000);
+			
+			var current_progress = 0;
+			var interval = setInterval(function() {
+				current_progress += 25;
+				$("#dynamic")
+				.css("width", current_progress + "%")
+				.attr("aria-valuenow", current_progress)
+				.text(current_progress + "% ");
+				if (current_progress >= 100)
+				{
+
+					clearInterval(interval);
+					setTimeout(function() {
+						$('.flashscreen').hide();
+					}, 1000);
+
+				}
+					
+			}, 1000);
+				 
 			
 		});
 	</script>
