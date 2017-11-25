@@ -1,6 +1,6 @@
 (function(){                                                                     
 	
-	var AppLifemarket = angular.module('lifemarketApp', ['lifemarketController', 'ngRoute','ngAnimate']);                                     
+	var AppLifemarket = angular.module('lifemarketApp', ['lifemarketService', 'lifemarketController', 'ngRoute','ngAnimate']);                                     
 	
 	AppLifemarket.config(["$routeProvider", function($routeProvider){
 		$routeProvider
@@ -10,13 +10,30 @@
 			.when('/login', {templateUrl: 'view/login.html', controller: 'loginCtrl'})
 			.when('/singup', {templateUrl: 'view/singup.html', controller: 'singupCtrl'})
 			.when('/cart', {templateUrl: 'view/cart.html', controller: 'cartCtrl'})
-			.when('/order', {templateUrl: 'view/order.html', controller: 'orderCtrl'})
+			.when('/order', {
+				templateUrl: 'view/order.html', 
+				controller: 'orderCtrl',
+				resolve:{
+					"check":function(UserManager, $location, $rootScope){
+						if(!UserManager.loginCheck())
+						{
+
+							$rootScope.oderStep = '/order';
+							$location.path("/login");
+							//pour forcer  la redirection en cas d'erreur
+							if (!$rootScope.$$phase) $rootScope.$apply();
+
+						}
+					}
+
+				}
+			})
 			.when('/product/:productId', {templateUrl: 'view/product.html', controller: 'productCtrl'})
 			.otherwise({redirectTo: '/'});
 			
 	}]);
 	
-  AppLifemarket.run(function($rootScope, $timeout, $location) {
+  AppLifemarket.run(['$rootScope', '$timeout', '$location', 'ProductManager', 'UserManager', function($rootScope, $timeout, $location, ProductManager, UserManager) {
 	  
 		$rootScope.setting = {'title': '', 'menu': 'home', 'totalQuantity': 0, 'prixTotal': 0, 'refresh':0};
 		$rootScope.produit = [
@@ -28,14 +45,56 @@
 		  {id: 6, name: 'Fricassé de poulet', summary: 'Fricassé de poulet', price: 1500, quantity: 1, image: 'images/of21.png'},
 		]
 
+		//variable qui contient l'url de l'etape du processus de commande en cours
+		$rootScope.oderStep = $location.path();
 
 
 		//detection du changement de route
-		$rootScope.$on("$routeChangeSuccess", function (scope, next, current) {
+		/* $rootScope.$on("$routeChangeSuccess", function (scope, next, current) {
 			$rootScope.transitionState = "active"
 			//alert('ok');
-		});
-	
+		}); */
+
+		/* $rootScope.$on('$routeChangeError', function () {
+			
+		}); */
+
+		// recuperation du service des gestion des produits
+		$rootScope.ProductManager = ProductManager;
+
+		// recuperation du service des gestion des users
+		$rootScope.userManager = UserManager;
+
+		
+		$rootScope.buyProduct = function(id, name, summary, price, quantity, image) {
+			
+			$rootScope.ProductManager.setProduct(id, name, summary, price, quantity, image);
+			//initialisation des paramètres
+			$rootScope.initCartSetting();
+			
+			//$('#my-cart-badge').text(getTotalQuantity());
+			toastr.options = {
+					//'closeButton' : true,
+					//'progressBar' : true,
+					'onclick' : function() { 
+					//on affiche la panier
+					
+							$location.path("/cart");
+							//pour forcer  la redirection en cas d'erreur
+							if (!$rootScope.$$phase) $rootScope.$apply();
+
+					//location.href = '#cart';
+					
+					},
+			}
+			
+			toastr.success('ajouté au panier .', name, {timeOut: 3000});
+			
+			//simmulatio du click sur l'icone du panier 
+			//$('#my-cart-icon').click();
+									
+		}
+
 		$rootScope.getProduct = function(id) {
 			  
 			 var productIndex = -1;
@@ -87,183 +146,9 @@
 				
 			
 		}
-			
-		$rootScope.ProductManager = (function(){
-			var objToReturn = {};
-
-			/*
-			PRIVATE
-			*/
-			localStorage.products = localStorage.products ? localStorage.products : "";
-			var getIndexOfProduct = function(id){
-			  var productIndex = -1;
-			  var products = getAllProducts();
-			  $.each(products, function(index, value){
-				if(value.id == id){
-				  productIndex = index;
-				  return;
-				}
-			  });
-			  return productIndex;
-			}
-			var setAllProducts = function(products){
-			  localStorage.products = JSON.stringify(products);
-			}
-			var addProduct = function(id, name, summary, price, quantity, image) {
-			  var products = getAllProducts();
-			 /*  products.push({
-				id: id,
-				name: name,
-				summary: summary,
-				price: price,
-				quantity: quantity,
-				image: image
-			  }); */
-			  //ajouter au debut du tableau
-			   products.unshift({
-				id: id,
-				name: name,
-				summary: summary,
-				price: price,
-				quantity: quantity,
-				image: image
-			  });
-			  
-			  setAllProducts(products);
-			}
-
-			/*
-			PUBLIC
-			*/
-			var getAllProducts = function(){
-			  try {
-				var products = JSON.parse(localStorage.products);
-				/* var productsOrder = [];
-				for (var i = eval(products.length - 1); i >= 0; i--) {
-				 
-					productsOrder.push(products[i])
-				  
-				} */
-				return products;
-				
-			  } catch (e) {
-				return [];
-			  }
-			}
-			var updatePoduct = function(id, quantity) {
-			  var productIndex = getIndexOfProduct(id);
-			  if(productIndex < 0){
-				return false;
-			  }
-			  var products = getAllProducts();
-			  products[productIndex].quantity = typeof quantity === "undefined" ? products[productIndex].quantity * 1 + 1 : quantity;
-			  setAllProducts(products);
-			  return true;
-			}
-			
-			var getProduct = function(id) {
-			  var productIndex = getIndexOfProduct(id);
-			  if(productIndex < 0){
-				return false;
-			  }
-			  var products = getAllProducts();
-			  
-			  return products[productIndex];
-			}
-			
-			var setProduct = function(id, name, summary, price, quantity, image) {
-			  if(typeof id === "undefined"){
-				console.error("id required")
-				return false;
-			  }
-			  if(typeof name === "undefined"){
-				console.error("name required")
-				return false;
-			  }
-			  if(typeof image === "undefined"){
-				console.error("image required")
-				return false;
-			  }
-			  if(!$.isNumeric(price)){
-				console.error("price is not a number")
-				return false;
-			  }
-			  if(!$.isNumeric(quantity)) {
-				console.error("quantity is not a number");
-				return false;
-			  }
-			  summary = typeof summary === "undefined" ? "" : summary;
-
-			  if(!updatePoduct(id)){
-				addProduct(id, name, summary, price, quantity, image);
-			  }
-			  
-			  //initialisation des paramètres
-			  $rootScope.initCartSetting();
-
-			  
-			  //$('#my-cart-badge').text(getTotalQuantity());
-			  toastr.options = {
-					//'closeButton' : true,
-					//'progressBar' : true,
-					'onclick' : function() { 
-					//on affiche la panier
-					//$location.path("/cart");
-
-					location.href = '#cart';
-					
-					},
-			  }
-			  
-			  toastr.success('ajouté au panier .', name, {timeOut: 3000});
-			  
-			  
-				
-			  //simmulatio du click sur l'icone du panier 
-			  //$('#my-cart-icon').click();
-			  
-			}
-			var clearProduct = function(){
-			  setAllProducts([]);
-			}
-			var removeProduct = function(id){
-			  var products = getAllProducts();
-			  products = $.grep(products, function(value, index) {
-				return value.id != id;
-			  });
-			  setAllProducts(products);
-			}
-			var getTotalQuantity = function(){
-			  var total = 0;
-			  var products = getAllProducts();
-			  $.each(products, function(index, value){
-				total += value.quantity * 1;
-			  });
-			  return total;
-			}
-			var getTotalPrice = function(){
-			  var products = getAllProducts();
-			  var total = 0;
-			  $.each(products, function(index, value){
-				total += value.quantity * value.price;
-			  });
-			  
-			  return total;
-			}
-
-			objToReturn.getAllProducts = getAllProducts;
-			objToReturn.updatePoduct = updatePoduct;
-			objToReturn.setProduct = setProduct;
-			objToReturn.getProduct = getProduct;
-			objToReturn.clearProduct = clearProduct;
-			objToReturn.removeProduct = removeProduct;
-			objToReturn.getTotalQuantity = getTotalQuantity;
-			objToReturn.getTotalPrice = getTotalPrice;
-			return objToReturn;
-		}());
 		
 		
-	
+		
 		$rootScope.delete = function(id)
 		{
 			$rootScope.ProductManager.removeProduct(id);
@@ -309,8 +194,25 @@
 		// on exécute la function au démarrage
 		$rootScope.initCartSetting();
 
+		$rootScope.logout = function()
+		{
+
+			$('.body-loader').css('visibility','visible'); 
+			setTimeout(function() {
+				$('.body-loader').css('visibility','hidden');
+					
+				$rootScope.userManager.logout();
+				$rootScope.oderStep = '/home';
+				$location.path('/home');
+				//pour forcer  la redirection en cas d'erreur
+				if (!$rootScope.$$phase) $rootScope.$apply();
+
+			}, 3000);
 		
-	});
+		}
+
+		
+	}]);
 	
 })(); 
 

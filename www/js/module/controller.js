@@ -39,9 +39,31 @@
 
 	});
 
-	ControllerLifemarket.controller('loginCtrl', function($scope){
+	ControllerLifemarket.controller('loginCtrl', function($scope, $location){
 		
 		$scope.setting.menu = 'login';
+		
+		$scope.user = {
+			id:"5",
+			name:"paulo",
+			email:"paulyemdji@gmail.com",
+			password:"1234"
+		}
+
+
+		$scope.submitform = function()
+		{
+			$('.body-loader').css('visibility','visible'); 
+			setTimeout(function() {
+				$('.body-loader').css('visibility','hidden');
+				$scope.userManager.login($scope.user.id, $scope.user.name, $scope.user.email, $scope.user.password);
+				$location.path($scope.oderStep);
+				//pour forcer  la redirection en cas d'erreur
+				if (!$scope.$$phase) $scope.$apply();
+
+			}, 3000);
+			
+		}
 
 	});
 
@@ -51,9 +73,12 @@
 
 	});
 
-	ControllerLifemarket.controller('orderCtrl', function($scope){
+
+	ControllerLifemarket.controller('orderCtrl', function($scope, $location){
 		
 		$scope.setting.menu = 'order';
+
+		$scope.user = $scope.userManager.getUser();
 
 		$scope.submitOrder = function()
 		{
@@ -62,7 +87,12 @@
 				$('.body-loader').css('visibility','hidden');
 				$scope.ProductManager.clearProduct();
 				$scope.initCartSetting();
-				location.href="#home";
+				//location.href="#home";
+
+				$location.path("/home");
+				//pour forcer  la redirection en cas d'erreur
+				if (!$scope.$$phase) $scope.$apply();
+
 			}, 3000);
 			
 

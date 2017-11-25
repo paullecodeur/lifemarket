@@ -12,18 +12,18 @@
 		<div class="main-agileits">
 				<div class="form-w3agile">
 					<h3>Connexion</h3>
-					<form action="#" method="post">
+					<form >
 						<div class="key">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
-							<input  type="text" value="Email" name="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+							<input  ng-model='user.email' type="text" value="Email" name="Email"  required="">
 							<div class="clearfix"></div>
 						</div>
 						<div class="key">
 							<i class="fa fa-lock" aria-hidden="true"></i>
-							<input  type="password" value="Password" name="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+							<input ng-model='user.password' type="password" value="Password" name="Password"   required="">
 							<div class="clearfix"></div>
 						</div>
-						<input type="submit" value="Connexion">
+						<input ng-click="submitform()" type="button" value="Connexion">
 					</form>
 				</div>
 				<div class="forg">
