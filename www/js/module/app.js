@@ -48,6 +48,9 @@
 		//variable qui contient l'url de l'etape du processus de commande en cours
 		$rootScope.oderStep = $location.path();
 
+		//nombre pages chargé par infinityScroll
+		$rootScope.numPage = 1;
+
 
 		//detection du changement de route
 		/* $rootScope.$on("$routeChangeSuccess", function (scope, next, current) {
@@ -115,41 +118,56 @@
 		}
 		
 		$rootScope.voirPlus = function() {
-
-			$rootScope.setting.refresh = true;
 				
-				var delayedFn = $timeout(function(){ 
-					
-					//var products = $rootScope.produit;
-					//var taille = $rootScope.produit.length;
-					var products = [
-						{id: 1, name: 'Blanc de poulet', summary: 'Blanc de poulet', price: 3000, quantity: 1, image: 'images/of16.png'},
-						{id: 2, name: 'Ailes de poulet', summary: 'Ailes de poulet', price: 2000, quantity: 1, image: 'images/of17.png'},
-						{id: 3, name: 'Cuisse de poulet', summary: 'Cuisse de poulet', price: 3500, quantity: 1, image: 'images/of18.png'},
-						{id: 4, name: 'Poulet vide STSP', summary: 'Blanc de poulet', price: 4000, quantity: 1, image: 'images/of19.png'},
-						{id: 5, name: 'Poulet entier avec tête/cou/pattes', summary: 'Poulet entier', price: 5000, quantity: 1, image: 'images/of20.png'},
-						{id: 6, name: 'Fricassé de poulet', summary: 'Fricassé de poulet', price: 1500, quantity: 1, image: 'images/of21.png'},
-					];
-					
-					for (var i = 0; i < 6; i++) {
+
+					if($rootScope.numPage<= 10)
+					{
+
+						$rootScope.setting.refresh = true;
+
+						var delayedFn = $timeout(function(){ 
+
+						//var products = $rootScope.produit;
+						//var taille = $rootScope.produit.length;
+						var products = [
+							{id: 1, name: 'Blanc de poulet', summary: 'Blanc de poulet', price: 3000, quantity: 1, image: 'images/of16.png'},
+							{id: 2, name: 'Ailes de poulet', summary: 'Ailes de poulet', price: 2000, quantity: 1, image: 'images/of17.png'},
+							{id: 3, name: 'Cuisse de poulet', summary: 'Cuisse de poulet', price: 3500, quantity: 1, image: 'images/of18.png'},
+							{id: 4, name: 'Poulet vide STSP', summary: 'Blanc de poulet', price: 4000, quantity: 1, image: 'images/of19.png'},
+							{id: 5, name: 'Poulet entier avec tête/cou/pattes', summary: 'Poulet entier', price: 5000, quantity: 1, image: 'images/of20.png'},
+							{id: 6, name: 'Fricassé de poulet', summary: 'Fricassé de poulet', price: 1500, quantity: 1, image: 'images/of21.png'},
+						];
+
+						for (var i = 0; i < 6; i++) {
+							
+							//value = {id: $rootScope.produit[i].id, name: $rootScope.produit[i].name, summary: $rootScope.produit[i].summary, price: $rootScope.produit[i].price, quantity: 1, image: $rootScope.produit[i].image};
+							$rootScope.produit.push(products[i]);
+							//products.push(value);
+						} 
 						
-						//value = {id: $rootScope.produit[i].id, name: $rootScope.produit[i].name, summary: $rootScope.produit[i].summary, price: $rootScope.produit[i].price, quantity: 1, image: $rootScope.produit[i].image};
-						$rootScope.produit.push(products[i]);
-						//products.push(value);
-					} 
-					
 
-					$rootScope.setting.refresh = false;
+						$rootScope.setting.refresh = false;
 
-				 /*var products = $rootScope.produit;
-				  $.each(products, function(index, value){
-					  
-					$rootScope.produit.push(value);
+						$rootScope.numPage++;
+
+						/*var products = $rootScope.produit;
+							$.each(products, function(index, value){
+								
+							$rootScope.produit.push(value);
+							
+							});
+						*/  
+
+						}, 5000);
+				 
+
+					}
+					else
+					{
+						//toastr.success('Chargement terminé', name, {timeOut: 3000});
+					}
 					
-				  });
-				 */  
-				 }, 5000);
-				
+				 
 			
 		}
 		
