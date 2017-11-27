@@ -8,7 +8,14 @@
 				
 				//$scope.setting.title = 'home';
 				
-					 
+				$scope.loademore = function()
+				{
+					
+					alert("");
+					
+					//$scope.test = titre;
+				} 
+
 				/* $scope.addProduct = function(id, name, summary, price, quantity, image)
 				{
 					ProductManager.setProduct(id, name, summary, 2500, 2, "'" + image + "'");
@@ -106,6 +113,14 @@
 		$scope.setting.menu = 'product';
 		$scope.productId = $routeParams.productId;
 		$scope.product =  $scope.getProduct($scope.productId);
+
+		$scope.also = [];
+		for (var i = 0; i < 6; i++) {
+			
+			//value = {id: $rootScope.produit[i].id, name: $rootScope.produit[i].name, summary: $rootScope.produit[i].summary, price: $rootScope.produit[i].price, quantity: 1, image: $rootScope.produit[i].image};
+
+			$scope.also.push($scope.produit[i]);
+		} 
 
 	});
 

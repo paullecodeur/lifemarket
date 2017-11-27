@@ -1,6 +1,7 @@
 
 <!-- Carousel
 ================================================== -->
+<center>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -10,23 +11,23 @@
   </ol>
   <div class="carousel-inner" role="listbox">
 	<div class="item active">
-	 <a href=""> <img class="first-slide" src="images/ba.jpg" alt="First slide"></a>
+	 <a href=""> <img class="first-slide" ng-src="images/loading.gif"  imageonload="images/ba.jpg"  alt="First slide"></a>
    
 	</div>
 	<div class="item">
-	 <a href=""> <img class="second-slide " src="images/ba1.jpg" alt="Second slide"></a>
+	 <a href=""> <img class="second-slide " ng-src="images/loading.gif"  imageonload="images/ba1.jpg"  alt="Second slide"></a>
 	 
 	</div>
 	<div class="item">
-	  <a href=""><img class="third-slide " src="images/ba2.jpg" alt="Third slide"></a>
+	  <a href=""><img class="third-slide " ng-src="images/loading.gif"  imageonload="images/ba2.jpg"  alt="Third slide"></a>
 	  
 	</div>
   </div>
 
 </div><!-- /.carousel -->
-
+</center>
 <div class="product" >
-	<div class="container">
+	<div class="container" >
 		
 		<div class="spec ">
 			<h3>Produits</h3>
@@ -36,17 +37,18 @@
 				<b class="line"></b>
 			</div>
 		</div>
-		<div class=" con-w3l" ng-repeat="member in produit">
+
+		<div class=" con-w3l" ng-repeat="member in produit" infinite-scroll="voirPlus()" infinite-scroll-disabled='setting.refresh' infinite-scroll-distance="1">
 			
 			<div class="col-md-4 pro-1">
 				<div class="col-m">
 					<!-- <a href="#product" data-toggle="modal" data-target="#myModal17" class="offer-img"> -->
 					<a href="#product/{{ member.id }}"  class="offer-img">
-						<img src="{{ member.image }}" class="img-responsive" alt="">
+						<img   ng-src="images/loading.gif"  imageonload="{{ member.image }}" class="img-responsive" alt="" >
 					</a>
 					<div class="mid-1">
 						<div class="women">
-							<h6><a href="#product/{{ member.id }}">{{ member.name|limitTo: 35 }}{{member.name.length > 35 ? '...' : ''}}</a> (Kg)</h6>							
+							<h6><a href="#product/{{ member.id }}">{{ member.name|limitTo: 20 }}{{member.name.length > 20 ? '...' : ''}}</a> (Kg)</h6>							
 						</div>
 						<div class="mid-2">
 							<p ><label>{{ member.price }} F</label><em class="item_price">{{ member.price - 500 }} F</em></p>
@@ -64,13 +66,13 @@
 					
 		</div>
 		
-		
 	</div>
 	<div class="container">
 		<div class="spec col-md-12" style="margin-top:20px">
 			<h3>
-			<button ng-click="voirPlus()" ng-if="!setting.refresh" class="btn btn-danger my-cart-btn my-cart-b" >Afficher plus de résultats</button><br/>
-			<span ng-if="setting.refresh"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></span>
+			<!-- <button ng-click="voirPlus()" ng-if="!setting.refresh" class="btn btn-danger my-cart-btn my-cart-b" >Afficher plus de résultats</button><br/> -->
+			<!-- <span ng-if="setting.refresh"><i class="fa fa-cog fa-spin fa-lg fa-fw"></i></span> -->
+			<p ng-if="setting.refresh" ><img src="images/ajax-loader.gif"><br/> Chargement...</p>
 			</h3>
 			<!-- <div class="ser-t">
 				<b></b>

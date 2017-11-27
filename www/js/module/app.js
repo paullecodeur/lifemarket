@@ -1,6 +1,6 @@
 (function(){                                                                     
 	
-	var AppLifemarket = angular.module('lifemarketApp', ['lifemarketService', 'lifemarketController', 'ngRoute','ngAnimate']);                                     
+	var AppLifemarket = angular.module('lifemarketApp', ['lifemarketService', 'lifemarketController', 'lifemarketDirective', 'ngRoute','ngAnimate', 'infinite-scroll']);                                     
 	
 	AppLifemarket.config(["$routeProvider", function($routeProvider){
 		$routeProvider
@@ -115,13 +115,14 @@
 		}
 		
 		$rootScope.voirPlus = function() {
-			$rootScope.setting.refresh = 1;
+
+			$rootScope.setting.refresh = true;
 				
 				var delayedFn = $timeout(function(){ 
 					
 					var products = $rootScope.produit;
 					var taille = $rootScope.produit.length;
-					for (var i = 0; i < taille; i++) {
+					for (var i = 0; i < 6; i++) {
 						
 						value = {id: $rootScope.produit[i].id, name: $rootScope.produit[i].name, summary: $rootScope.produit[i].summary, price: $rootScope.produit[i].price, quantity: 1, image: $rootScope.produit[i].image};
 	
@@ -130,7 +131,8 @@
 					
 					$rootScope.produit = products;
 
-					
+					$rootScope.setting.refresh = false;
+
 				 /*var products = $rootScope.produit;
 				  $.each(products, function(index, value){
 					  
@@ -138,10 +140,6 @@
 					
 				  });
 				 */  
-
-					$rootScope.setting.refresh = 0;
-
-
 				 }, 5000);
 				
 			
