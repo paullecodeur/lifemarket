@@ -59,14 +59,14 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		</center> 
 	</div>
 	
-	<div class="body-loader" style="visibility:hidden; background:rgba(0,0,0,0.5); color:#fff"> 
+	<div class="body-loader" style="visibility:hidden;  background:rgba(0,0,0,0.4); color:#fff"> 
 		<center>
 			<div style="margin-top:50vh;  transform: translateY(-50%); ">
 				<!-- <img style="max-height:100px;" src="images/logo.png"> -->
 				<div>
 				</div>
 				<div class="logo">
-					<div style = "background:black; width:50%; padding:20px"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i><br/> Opération en cour...</div>
+					<div style = "background:rgba(0,0,0,0.6); width:100px; height:auto;  padding:20px; border-radius:5px; "><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></div>
 				</div>
 			</div>
 		</center> 
@@ -79,7 +79,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			
 			<div class="logo">
 				<!-- <h1 ><a href=""><b>T<br>H<br>E</b>LIFE<span>&nbsp; &nbsp; Market  &nbsp; &nbsp;</span></a></h1> -->
-				<center><a href="#home"><img src="images/logo.png" class="" alt="" style="width:225px;" ></a></center>
+				<center><a href="#home"><img src="images/logo.png" class="" alt="" style="width:50%;" ></a></center>
 			</div>
 			<div class="head-t">
 				<ul class="card">
@@ -227,10 +227,14 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--content-->
 <div ng-view class="slide">
   
-<h1 style="text-align:center; font-size:22px; margin:50px">
-<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
-<span class="sr-only">Loading...</span>
-</h1>
+		<div class="container">
+			<div class="spec col-md-12" style="margin-top:20px">
+				<h3>
+				<p><img src="images/ajax-loader.gif"><br/> Chargement...</p>
+				</h3>
+			</div>
+		</div>
+
 <!-- <div class="content-top ">
 	<div class="container ">
 		<div class="spec ">
@@ -818,7 +822,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- Angularjs -->
 	<script src="js/angular-1.5.5/angular.min.js"></script>
 	<script src="js/angular-1.5.5/angular-route.min.js"></script>
-	<script src="js/angular-1.5.5/angular-animate.min.js"></script>
+	<!-- <script src="js/angular-1.5.5/angular-animate.min.js"></script> -->
 	<script src="js/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
 	
 	<script src="js/module/app.js"></script>
@@ -897,10 +901,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			});
 		});
 	</script>
-	<!--- start-rate---->
-	<script src="js/jstarbox.js"></script>
-	<!---//End-rate---->
-	
+
 	<!-- smooth scrolling -->
 		<script type="text/javascript">
 			$(document).ready(function() {
@@ -918,7 +919,10 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	<!-- //smooth scrolling -->
 	
-	
+	<!--- start-rate---->
+	<script src="js/jstarbox.js"></script>
+	<!---//End-rate---->
+		
 	
 	
 		<!-- <script type="text/javascript">

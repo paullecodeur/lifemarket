@@ -1,6 +1,6 @@
 (function(){                                                                     
 	
-	var AppLifemarket = angular.module('lifemarketApp', ['lifemarketService', 'lifemarketController', 'lifemarketDirective', 'ngRoute','ngAnimate', 'infinite-scroll']);                                     
+	var AppLifemarket = angular.module('lifemarketApp', ['lifemarketService', 'lifemarketController', 'lifemarketDirective', 'ngRoute', 'infinite-scroll']);                                     
 	
 	AppLifemarket.config(["$routeProvider", function($routeProvider){
 		$routeProvider
@@ -52,11 +52,16 @@
 		$rootScope.numPage = 1;
 
 
-		//detection du changement de route
-		/* $rootScope.$on("$routeChangeSuccess", function (scope, next, current) {
-			$rootScope.transitionState = "active"
+		//Changing route doesn't scroll to top in the new page
+		/* The solution is to add autoscroll="true" to your ngView element:
+		<div class="ng-view" autoscroll="true"></div> */
+
+		$rootScope.$on("$routeChangeSuccess", function (event, currentRoute, previousRoute) {
+			window.scrollTo(0, 0);
 			//alert('ok');
-		}); */
+		});
+
+	
 
 		/* $rootScope.$on('$routeChangeError', function () {
 			

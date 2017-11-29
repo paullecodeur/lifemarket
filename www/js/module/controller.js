@@ -122,6 +122,11 @@
 			$scope.also.push($scope.produit[i]);
 		} 
 
+		/* $scope.$watch('$viewContentLoaded', function(){
+			// traitement à effectuer au chargement de la page
+			alert('ok');
+		}); */
+
 	});
 
 })(); 
