@@ -39,8 +39,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
 <body >
 	<div style="">
-		<div class="flashscreen" style="background: url('images/co.jpg') no-repeat; background-size:cover;"> 
-			<center>
+		<div class="flashscreen" style="background: url('images/ab2.jpg') no-repeat #fff; background-size:cover;"> 
+			<div class="flashscreen" style="background:rgba(0,0,0,0.6);"> 
+				<center>
 				<div style="margin-top:50vh;  transform: translateY(-50%); ">
 					<!-- <img style="max-height:100px;" src="images/logo.png"> -->
 					<div>
@@ -56,7 +57,8 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						</div>
 					</div>
 				</div>
-			</center> 
+				</center> 
+			</div>
 		</div>
 	</div>
 	<div class="body-loader" style="visibility:hidden;  background:rgba(0,0,0,0.4); color:#fff"> 
@@ -88,6 +90,8 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<li><a href="register.html" ><i class="fa fa-arrow-right" aria-hidden="true"></i>Register</a></li>
 					<li><a href="about.html" ><i class="fa fa-file-text-o" aria-hidden="true"></i>Order History</a></li>
 					<li><a href="shipping.html" ><i class="fa fa-ship" aria-hidden="true"></i>Shipping</a></li> -->
+					<li><a href="#login" class=""> <span> <i class="fa fa-user" aria-hidden="true"></i> Révendeur ?</span></a></li>
+					
 				</ul>	
 			</div>
 			
@@ -187,7 +191,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							<li><a href="" class="menulink" ng-click="logout()">Deconnexion</a></li>
 						</ul>
 					</li>
-					<li ng-class="{active: setting.menu == 'search'}"><a href="" class="hyper menulink"> <span> <i class="fa fa-search" aria-hidden="true"></i> </span></a></li>
+					<!--<li ng-class="{active: setting.menu == 'search'}"><a href="" class="hyper menulink"> <span> <i class="fa fa-search" aria-hidden="true"></i> </span></a></li> -->
 					<!-- <li ng-class="{active: setting.menu == 'singup'}"><a href="#singup" class="hyper"> <span> <i class="fa fa-arrow-right" aria-hidden="true"></i> Inscription</span></a></li> -->
 					
 
@@ -195,8 +199,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				</ul>
 			</div>
 			</nav>
-			 <div class="cart" >
-				<a href="#cart"> <span  class="fa fa-shopping-cart fa-2x"><span  class="badge badge-notify"> {{ setting.totalQuantity }} </span></span></a>
+			<div class="cart" >
+					<a href=""> <span> <i class="fa fa-search fa-lg" aria-hidden="true"></i>  </span></a> &nbsp;&nbsp;
+					<a href="#cart"> <span  class="fa fa-shopping-cart fa-lg"><span  class="badge badge-notify"> {{ setting.totalQuantity }} </span></span></a>
 				<!-- <span  id="my-cart-icon" class="fa fa-shopping-cart my-cart-icon"><span id="my-cart-badge" class="badge badge-notify my-cart-badge"> {{ setting.totalQuantity }}</span></span> -->
 			</div>
 			<div class="clearfix"></div>

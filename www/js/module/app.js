@@ -121,6 +121,11 @@
 			
 			  return products[productIndex];
 		}
+
+		$rootScope.clickBouttonVoirPlus = function() {
+			$rootScope.numPage = 1;
+			$rootScope.voirPlus();
+		}
 		
 		$rootScope.voirPlus = function() {
 				
